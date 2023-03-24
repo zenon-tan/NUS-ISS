@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+    <title>Billboard Hot 100</title>
+</head>
+
+<body>
+
+    <h2>Billboard Hot 100:</h2>
+
+    <table border="1" align="center">
+        <form action="#" data-th-action="@{/favorites}" method="post" data-th-object="${favorite}">
+
+            <p data-th-if="${#fields.hasAnyErrors()}">
+                <ul>
+                    <li data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}" class="error"></li>
+                </ul>
+            </p>
+
+            Enter your name: <input type="text" data-th-field="${favorite.username}">
+
+            <tr>
+                <th>Add to Favorites</th>
+                <th>Rank</th>
+                <th>Image</th>
+                <th>Artist</th>
+                <th>Song</th>
+                <th>Weeks at No. 1</th>
+                <th>Last Week</th>
+            <tr data-th-each="song : ${songlist}" align="center">
+                <td><input type="checkbox" data-th-attr="value=${song.title}" data-th-field="${favorite.favSongs}"></td>
+                <td data-th-text="${song.rank}"></td>
+                <td>
+                    <img data-th-src="${song.image}" />
+                </td>
+
+
+                <td data-th-text="${song.artist}"></td>
+                <td data-th-text="${song.title}"></td>
+                <td data-th-text="${song.weeksAtNo1}"></td>
+                <td data-th-text="${song.lastWeek}"></td>
+
+            </tr>
+            </tr>
+
+            <button type="submit">Save Songs</button>
+
+
+        </form>
+
+    </table>
+
+</body>
+
+</html>

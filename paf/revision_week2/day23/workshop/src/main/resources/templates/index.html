@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Find your orders</h2>
+    <form action="#" data-th-action="@{/}" method="post" data-th-object="${id}">
+        Order Id: <input type="text" data-th-field="${id.id}">
+        <button type="submit">Find</button>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Your order details:</h2>
+    <form action="#" data-th-action="@{/thankyou}" method="post" data-th-object="${order}">
+
+        Name: <input type="text" data-th-field="*{customerName}">
+        <br>
+        Address: <input type="text" data-th-field="*{shipAddress}">
+        <br>
+        Delivery Date: <input type="date" data-th-field="*{orderDate}">
+        <br>
+        Comments: <input type="text" data-th-field="*{notes}">
+        <br>
+        <button type="submit">Order</button>
+
+    </form>
+
+    <h2>Your shopping cart:</h2>
+        <table border="1">
+            <thead>
+                <td>Product</td>
+                <td>Unit Price</td>
+                <td>Quantity</td>
+            </thead>
+            <tbody data-th-each="item : ${order.items}">
+
+                <td data-th-text="${item.product}"></td>
+                <td data-th-text="${item.unitPrice}"></td>
+                <td data-th-text="${item.quantity}"></td>
+
+            </tbody>
+        </table>
+    
+</body>
+</html>

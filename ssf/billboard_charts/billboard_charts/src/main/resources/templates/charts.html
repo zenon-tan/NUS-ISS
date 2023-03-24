@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billboard Hot 100</title>
+</head>
+
+<body>
+
+    <h2>Billboard Hot 100:</h2>
+    <!-- View Charts by:
+    <form action="#" data-th-action="@{/songs}" method="get" data-th-object="${songlist}">
+
+        <select data-th-field="*{number}">
+            <option data-th-value="100">All</option>
+            <option data-th-value="10">Top 10</option>
+            <option data-th-value="20">Top 20</option>
+            <option data-th-value="50">Top 50</option>
+        </select>
+        <button type="submit">Show</button>
+    </form>
+    <br> -->
+    <div>
+
+            <span>View by: Top <span data-th-text="${top}"></span></span>
+            <form action="songs" method="get">
+                <select name="number" id="number">
+                    <option value="100">All</option>
+                    <option value="10">Top 10</option>
+                    <option value="20">Top 20</option>
+                    <option value="50">Top 50</option>
+                </select>
+                
+                <button type="submit">View</button>
+            </form>
+    </div>
+
+    <table border="1" align="center">
+        <tr>
+            <th>Rank</th>
+            <th>Image</th>
+            <th>Artist</th>
+            <th>Song</th>
+            <th>Weeks at No. 1</th>
+            <th>Last Week</th>
+        </tr>
+        <tr data-th-each="song : ${songlist}" align="center">
+            <td data-th-text="${song.rank}"></td>
+            <td>
+                <img data-th-src="${song.image}" />
+            </td>
+
+            <td data-th-text="${song.artist}"></td>
+            <td data-th-text="${song.title}"></td>
+            <td data-th-text="${song.weeksAtNo1}"></td>
+            <td data-th-text="${song.lastWeek}"></td>
+
+        </tr>
+    </table>
+
+</body>
+
+</html>

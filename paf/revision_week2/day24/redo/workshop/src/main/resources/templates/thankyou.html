@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Thank you!</h2>
+
+    <div data-th-object="${order}">
+        Order ID: <p data-th-text="*{orderId}"></p>
+        <br>
+        Name: <p data-th-text="*{customerName}"></p>
+        <br>
+        Address: <p data-th-text="*{shipAddress}"></p>
+        <br>
+        Delivery Date: <p data-th-text="*{orderDate}"></p>
+        <br>
+        Comments: <p data-th-text="*{notes}"></p>
+
+        <h2>Your Purchased Items</h2>
+        <table border="1">
+            <thead>
+                <td>Product</td>
+                <td>Unit Price</td>
+                <td>Quantity</td>
+            </thead>
+            <tbody data-th-each="item : ${order.items}">
+
+                <td data-th-text="${item.product}"></td>
+                <td data-th-text="${item.unitPrice}"></td>
+                <td data-th-text="${item.quantity}"></td>
+
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping</title>
+</head>
+<body>
+
+    <h2>Shopping</h2>
+    <form action="#" data-th-action="@{/cart}" method="post" data-th-object="${item}">
+        Product: <input type="text" data-th-field="*{product}">
+        <br>
+        Price: <input type="text" data-th-field="*{unitPrice}">
+        <br>
+        Quantity: <input type="text" data-th-field="*{quantity}">
+        <button type="submit">Add To Cart</button>
+    </form>
+
+    <h2>Your shopping cart:</h2>
+    <div data-th-if="${#lists.isEmpty(cart)}">
+        <p>Your cart is empty.</p>
+    </div>
+
+    <div data-th-unless="${#lists.isEmpty(cart)}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="item : ${cart}">
+                    <td data-th-text="${item.product}"></td>
+                    <td data-th-text="${item.unitPrice}"></td>
+                    <td data-th-text="${item.quantity}"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <form action="#" data-th-action="@{/checkout}" method="post">
+                            <button type="submit">Check Out</button>
+                        </form>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    
+</body>
+</html>

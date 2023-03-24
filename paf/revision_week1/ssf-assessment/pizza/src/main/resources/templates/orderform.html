@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+    <title>Order Details</title>
+</head>
+
+<body>
+
+    <h2>Order Delivery Details</h2>
+
+    <form action="#" data-th-action="@{/pizza/order}" method="post" data-th-object="${customer}">
+
+        <div data-th-if="${#fields.hasAnyErrors()}">
+            <ul>
+                <li data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}"></li>
+            </ul>
+        </div>
+
+        Name: <input type="text" data-th-field="*{name}">
+        <!-- <span data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}"></span> -->
+        <br>
+        Address: <input type="text" data-th-field="*{address}">
+        <br>
+        Phone: <input type="text" data-th-field="*{phone}">
+        <br>
+        <input type="date" data-th-field="${order.deliveryDate}">
+        Rush: <input type="checkbox" value="true" data-th-field="${order.isRush}">
+        <br>
+        Comments: <input type="text" data-th-field="${order.comments}">
+        <br>
+        <button type="submit" name="Place Order" value="Cancel" data-th-formaction="@{/}" data-th-formmethod="get">Cancel Order</button>
+        <button type="submit" name="Place Order" value="Submit">Place Order</button>
+
+    </form>
+
+</body>
+
+</html>

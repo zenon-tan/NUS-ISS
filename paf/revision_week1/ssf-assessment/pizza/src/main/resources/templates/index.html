@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panucci's Pizza</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+    <div class="title">
+        <h2>Panucci's Pizza</h2>
+        <br>
+        <div><img src="/images/logo.jpg" class="thumbnail"></div>
+        
+    </div>
+
+    <form method="post" data-th-action="@{/pizza}" data-th-object="${cart}">
+
+        <p data-th-if="${#fields.hasAnyErrors()}">
+        <ul>
+            <li data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}" class="error"></li>
+        </ul>
+        </p>
+
+
+        <div>
+            <h2>Select a pizza</h2>
+            <table>
+                <tr>
+                    <td data-th-each="pizza, itemStat : ${pizzas}">
+                        <div>
+                            <p data-th-text="${pizza.pizzaName}"></p>
+                            <img data-th-src="${pizza.imgUrl}" class="pizza">
+                            <p>$<span data-th-text="${pizza.price}"></span></p>
+                        </div>
+                        <div>
+                            <input type="checkbox" data-th-attr="value=${pizza.pizzaName}"
+                                data-th-field="${cart.pizzaList[__${itemStat.index}__].pizzaName}">
+                                <br>
+
+                                Size:
+
+                                <select name="size" data-th-field="${cart.pizzaList[__${itemStat.index}__].size}">
+                                    <option data-th-value="1">Small</option>
+                                    <option data-th-value="1.20">Medium</option>
+                                    <option data-th-value="1.5">Large</option>
+                                </select>
+                                <br>
+
+                                Quantity:
+
+                                <input type="number" name="quantity" data-th-field="${cart.pizzaList[__${itemStat.index}__].quantity}">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <button type="submit">Next</button>
+    </form>
+
+</body>
+
+</html>

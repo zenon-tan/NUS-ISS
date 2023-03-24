@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body data-th-object="${cart}">
+
+    <div data-th-each="pizza : ${cart.pizzaList}">
+        <p data-th-text="${pizza.pizzaName}"></p>
+        <p data-th-text="${pizza.size}"></p>
+        <p data-th-text="${pizza.quantity}"></p>
+    </div>
+
+    <div>
+        Total:
+        <p data-th-text="*{price}"></p>
+    </div>
+
+
+    
+</body>
+</html>
