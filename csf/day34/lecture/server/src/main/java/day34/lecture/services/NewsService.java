@@ -32,7 +32,7 @@ public class NewsService {
         String url = UriComponentsBuilder.fromUriString(NEWS_API)
         .queryParam("country", country)
         .queryParam("category", category)
-        .queryParam("apiKey", "29a7359b404942bf80a6663b4cc3dbca")
+        .queryParam("apiKey", "SET_THIS")
         .toUriString();
 
         RequestEntity<Void> req = RequestEntity.get(url)
